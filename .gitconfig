@@ -1,0 +1,10 @@
+[user]
+	name = Athan Yi
+	email = eoleumbi@gmail.com
+[alias]
+	b = branch
+	br = branch
+	co = checkout
+	ci = commit
+	st = status
+	rb = rebase
