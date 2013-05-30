@@ -1,3 +1,5 @@
+" Vundle, Vim plugin manager
+
 set nocompatible               " be iMproved
 filetype off                   " required!
 
@@ -15,15 +17,32 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'gregsexton/gitv'
 
 " developement
+" ==========================================================
 Bundle 'scrooloose/nerdtree'
+Bundle 'taglist.vim'
+Bundle 'cscope.vim'
+Bundle 'surround.vim'
+Bundle 'matchit.zip'
+Bundle 'FuzzyFinder'
+"       FuzzyFinder requires L9 library
+Bundle 'L9'
+"Bundle 'ervandew/supertab'
+
+" java
+"Bundle 'javacomplete'
+
+" debugging vim script
+"Bundle 'c9s/vim-dev-plugin'
+"Bundle 'BreakPts'
+"Bundle 'clones/vim-genutils'
+
+" utils
+" ==========================================================
+Bundle 'mattn/calendar-vim'
 
 " colorscheme
+" ==========================================================
 Bundle 'altercation/solarized', {'rtp': 'vim-colors-solarized/'}
-
-" vim-scripts repos
-Bundle 'taglist.vim'
-
-" non github repos
 
 filetype plugin indent on     " required!
 "
