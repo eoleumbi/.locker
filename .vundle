@@ -3,7 +3,7 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 " let Vundle manage Vundle
@@ -42,7 +42,7 @@ Bundle 'mattn/calendar-vim'
 
 " colorscheme
 " ==========================================================
-Bundle 'altercation/solarized', {'rtp': 'vim-colors-solarized/'}
+Bundle 'altercation/solarized', {'rtp': 'vim-colors-solarized'}
 
 filetype plugin indent on     " required!
 "

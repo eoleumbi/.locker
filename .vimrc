@@ -4,8 +4,12 @@ syntax enable
 
 source ~/.locker/.vundle    "TODO replace .locker to current directory
 
-set background=dark
-colorscheme solarized
+if !empty(globpath(&rtp, 'colors/solarized.vim'))
+    colorscheme solarized
+    set background=dark
+else
+    colorscheme desert
+endif
 
 " cscope
 if has("cscope")
