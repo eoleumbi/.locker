@@ -8,3 +8,6 @@
 	ci = commit
 	st = status
 	rb = rebase
+	lo = log --oneline --decorate --graph
+[color]
+	ui = auto
