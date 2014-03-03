@@ -14,6 +14,29 @@ else
     colorscheme desert
 endif
 
+"=============================================================================
+" General
+set nobk  "no backup
+set ic    "ignore case in search
+set hls   "highlight matches of previous search pattern
+set sm    "jumping to matching bracket
+
+set ts=4
+set sw=4
+if exists('+colorcolumn')
+  set cc=+1 "highlight column after 'textwidth'
+endif
+
+if has('multi_byte_ime') || has('multi_byte')
+  "red cursor for Korean input mode
+  highlight CursorIM guibg=Red guifg=NONE
+endif
+
+runtime ftplugin/man.vim
+
+"=============================================================================
+" Plugin
+
 " cscope
 if has("cscope")
     set csto=1
@@ -29,3 +52,14 @@ if has("cscope")
     endif
     set csverb
 endif
+
+" fugitive {
+  "auto-clean fugitive buffers
+  autocmd BufReadPost fugitive://*    set bufhidden=delete
+  "add git branch to status line
+  set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+" }
+
+" Calendar {
+  let g:Calendar_weeknm = 5	"show the week number
+" }
