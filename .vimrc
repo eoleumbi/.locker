@@ -3,6 +3,9 @@ set nocompatible               " be iMproved
 syntax enable
 
 source ~/.locker/.vundle    "TODO replace .locker to current directory
+if has('gui_running')
+    source ~/.locker/.gvimrc
+endif
 
 if !empty(globpath(&rtp, 'colors/solarized.vim'))
     colorscheme solarized
