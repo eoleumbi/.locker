@@ -3,54 +3,58 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
-" My Bundles here:
+" My Plugins here:
 "
 " original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'gregsexton/gitv'
+Plugin 'tpope/vim-fugitive'
+Plugin 'gregsexton/gitv'
 
 " developement
 " ==========================================================
-Bundle 'scrooloose/nerdtree'
-Bundle 'taglist.vim'
-Bundle 'cscope.vim'
-Bundle 'surround.vim'
-Bundle 'matchit.zip'
-Bundle 'FuzzyFinder'
+Plugin 'scrooloose/nerdtree'
+Plugin 'taglist.vim'
+Plugin 'cscope.vim'
+Plugin 'surround.vim'
+Plugin 'matchit.zip'
+Plugin 'FuzzyFinder'
 "       FuzzyFinder requires L9 library
-Bundle 'L9'
-"Bundle 'ervandew/supertab'
+Plugin 'L9'
+"Plugin 'ervandew/supertab'
 
 " java
-"Bundle 'javacomplete'
+"Plugin 'javacomplete'
 
 " debugging vim script
-"Bundle 'c9s/vim-dev-plugin'
-"Bundle 'BreakPts'
-"Bundle 'clones/vim-genutils'
+"Plugin 'c9s/vim-dev-plugin'
+"Plugin 'BreakPts'
+"Plugin 'clones/vim-genutils'
 
 " utils
 " ==========================================================
-Bundle 'mattn/calendar-vim'
+Plugin 'mattn/calendar-vim'
 
 " colorscheme
 " ==========================================================
-Bundle 'altercation/solarized', {'rtp': 'vim-colors-solarized'}
+Plugin 'altercation/solarized', {'rtp': 'vim-colors-solarized'}
 
-filetype plugin indent on     " required!
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
 "
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" Put your non-Plugin stuff after this line

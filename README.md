@@ -12,7 +12,7 @@
 
    ``` bash
    $ git clone https://github.com/eoleumbi/.locker.git ~/.locker
-   $ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+   $ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
    $ echo source ~/.locker/.vimrc > ~/.vimrc
    $ ln -s ~/.locker/.bash_aliases ~/
    $ ln -s ~/.locker/.gitconfig ~/
