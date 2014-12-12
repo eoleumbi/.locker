@@ -14,3 +14,9 @@ export PATH=$HOME/bin:$PATH
 # local configuration definitions.
 [[ -f "${HOME}/.bash_host" ]] && . "${HOME}/.bash_host"
 
+# view manuals in vi using vman
+function vman() {
+	vi -c "Man $*" -c "on"
+}
+
+alias Man='vman'
