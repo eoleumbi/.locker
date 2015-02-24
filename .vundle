@@ -7,7 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Plugin 'gmarik/Vundle.vim'
 
 " My Plugins here:
@@ -16,6 +16,9 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
 
+Plugin 'bling/vim-airline'
+Plugin 'Lokaltog/vim-easymotion'
+
 " developement
 " ==========================================================
 Plugin 'scrooloose/nerdtree'
@@ -23,9 +26,8 @@ Plugin 'taglist.vim'
 Plugin 'cscope.vim'
 Plugin 'surround.vim'
 Plugin 'matchit.zip'
-Plugin 'FuzzyFinder'
-"       FuzzyFinder requires L9 library
-Plugin 'L9'
+Plugin 'scrooloose/syntastic'
+Plugin 'kien/ctrlp.vim'
 "Plugin 'ervandew/supertab'
 
 " java
