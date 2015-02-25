@@ -63,3 +63,22 @@ endif
 " Calendar {
   let g:Calendar_weeknm = 5	"show the week number
 " }
+
+" NERDTree {
+  let NERDTreeIgnore = [
+    \ '^\(bin\|gen\|build\)$[[dir]]',
+    \ '\.\?gradle$', '^gradlew\(.bat\)\?$[[file]]',
+    \ '\.iml$[[file]]',
+    \ '\~$',
+    \ ]
+" }
+
+" CtrlP {
+  if exists("g:ctrl_user_command")
+    unlet g:ctrlp_user_command
+  endif
+  let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/](\.(git|hg|svn)|(bin|gen|build))$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ }
+" }
