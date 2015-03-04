@@ -64,6 +64,15 @@ endif
   let g:Calendar_weeknm = 5	"show the week number
 " }
 
+" EasyGrep {
+    let g:EasyGrepMode = 3 "user mode
+    let g:EasyGrepRecursive = 1 "recursive search
+    " pattern for user mode
+    let g:EasyGrepDefaultUserPattern =" *.java *.xml"
+    let g:EasyGrepDefaultUserPattern.=" *.cpp *.c *.hpp"
+    let g:EasyGrepDefaultUserPattern.=" *.mk *.log"
+" }
+
 " NERDTree {
   let NERDTreeIgnore = [
     \ '^\(bin\|gen\|build\)$[[dir]]',
@@ -71,6 +80,10 @@ endif
     \ '\.iml$[[file]]',
     \ '\~$',
     \ ]
+" }
+
+" TagBar {
+    autocmd BufEnter * nested :call tagbar#autoopen(0)
 " }
 
 " CtrlP {

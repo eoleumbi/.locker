@@ -18,10 +18,12 @@ Plugin 'gregsexton/gitv'
 
 Plugin 'bling/vim-airline'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'EasyGrep'
 
 " developement
 " ==========================================================
 Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
 Plugin 'taglist.vim'
 Plugin 'cscope.vim'
 Plugin 'surround.vim'
