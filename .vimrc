@@ -37,22 +37,6 @@ runtime ftplugin/man.vim
 "=============================================================================
 " Plugin
 
-" cscope
-if has("cscope")
-    set csto=1
-    set cst
-
-    set nocsverb
-    " add any database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-    " else add database pointed to by environment
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
-    set csverb
-endif
-
 " fugitive {
   "auto-clean fugitive buffers
   autocmd BufReadPost fugitive://*    set bufhidden=delete
@@ -84,6 +68,28 @@ endif
 
 " TagBar {
     autocmd BufEnter * nested :call tagbar#autoopen(0)
+" }
+
+" cscove {
+    nnoremap  <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
+    nnoremap  <leader>l :call ToggleLocationList()<CR>
+
+    " s: Find this C symbol
+    nnoremap  <leader>fs :call cscope#find('s', expand('<cword>'))<CR>
+    " g: Find this definition
+    nnoremap  <leader>fg :call cscope#find('g', expand('<cword>'))<CR>
+    " d: Find functions called by this function
+    nnoremap  <leader>fd :call cscope#find('d', expand('<cword>'))<CR>
+    " c: Find functions calling this function
+    nnoremap  <leader>fc :call cscope#find('c', expand('<cword>'))<CR>
+    " t: Find this text string
+    nnoremap  <leader>ft :call cscope#find('t', expand('<cword>'))<CR>
+    " e: Find this egrep pattern
+    nnoremap  <leader>fe :call cscope#find('e', expand('<cword>'))<CR>
+    " f: Find this file
+    nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR>
+    " i: Find files #including this file
+    nnoremap  <leader>fi :call cscope#find('i', expand('<cword>'))<CR>
 " }
 
 " CtrlP {
