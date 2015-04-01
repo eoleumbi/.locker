@@ -23,6 +23,7 @@ Plugin 'EasyGrep'
 " developement
 " ==========================================================
 Plugin 'scrooloose/nerdtree'
+Plugin 'szw/vim-tags'
 Plugin 'majutsushi/tagbar'
 Plugin 'taglist.vim'
 Plugin 'brookhong/cscope.vim'
