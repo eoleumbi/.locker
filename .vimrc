@@ -45,7 +45,8 @@ runtime ftplugin/man.vim
 " }
 
 " Calendar {
-  let g:Calendar_weeknm = 5	"show the week number
+    let g:calendar_monday = 1 "week start on Monday
+    let g:calendar_weeknm = 5 "show the week number
 " }
 
 " EasyGrep {
