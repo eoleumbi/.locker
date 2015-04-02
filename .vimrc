@@ -103,3 +103,5 @@ runtime ftplugin/man.vim
     \ 'file': '\v\.(exe|so|dll)$',
     \ }
 " }
+
+" vim: et sts=2 ts=2 sw=2 tw=78 norl:
