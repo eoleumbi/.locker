@@ -1,6 +1,11 @@
 set nocompatible               " be iMproved
 
 syntax enable
+if has('unix')  "Mac(Darwin) or Linux
+  lan en_US.UTF-8
+else
+  lan mes en
+endif
 
 source ~/.locker/.vundle    "TODO replace .locker to current directory
 if has('gui_running')
