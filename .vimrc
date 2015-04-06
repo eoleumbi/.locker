@@ -39,6 +39,8 @@ endif
 
 runtime ftplugin/man.vim
 
+set diffopt+=vertical
+
 "=============================================================================
 " Plugin
 
