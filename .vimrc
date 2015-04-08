@@ -51,6 +51,10 @@ set diffopt+=vertical
   set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " }
 
+" Gitv {
+    let g:Gitv_OpenHorizontal = 1 "browser mode open in a horizontal split
+" }
+
 " Calendar {
     let g:calendar_monday = 1 "week start on Monday
     let g:calendar_weeknm = 5 "show the week number
