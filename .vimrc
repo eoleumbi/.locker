@@ -79,7 +79,9 @@ set diffopt+=vertical
 " }
 
 " TagBar {
+  if exists('g:loaded_tagbar')
     autocmd BufEnter * nested :call tagbar#autoopen(0)
+  endif
 " }
 
 " cscove {
@@ -114,6 +116,13 @@ set diffopt+=vertical
     \ 'dir':  '\v[\/](\.(git|hg|svn)|(bin|gen|build))$',
     \ 'file': '\v\.(exe|so|dll)$',
     \ }
+" }
+
+" javacomplete {
+  if !empty(globpath(&rtp, 'autoload/javacomplete.vim'))
+    autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+        \ completefunc=javacomplete#CompleteParamsInfo
+  endif
 " }
 
 " vim: et sts=2 ts=2 sw=2 tw=78 norl:

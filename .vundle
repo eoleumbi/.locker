@@ -34,8 +34,9 @@ Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 "Plugin 'ervandew/supertab'
 
-" java
-"Plugin 'javacomplete'
+" java & android
+Plugin 'javacomplete'
+"Plugin 'hsanson/vim-android'
 
 " debugging vim script
 "Plugin 'c9s/vim-dev-plugin'
