@@ -12,11 +12,14 @@ if has('gui_running')
     source ~/.locker/.gvimrc
 endif
 
-if !empty(globpath(&rtp, 'colors/solarized.vim'))
-    colorscheme solarized
-    set background=dark
+if !empty(globpath(&rtp, 'colors/mirodark.vim'))
+  colorscheme mirodark
 else
-    colorscheme desert
+  colorscheme desert
+endif
+" use 256 colors in Console mode if we think the terminal supports it
+if &term =~? 'mlterm\|xterm\|screen'
+  set t_Co=256
 endif
 
 "=============================================================================

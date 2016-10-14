@@ -49,7 +49,15 @@ Plugin 'mattn/calendar-vim'
 
 " colorscheme
 " ==========================================================
+Plugin 'djjcast/mirodark'
+Plugin 'tomasr/molokai'
+Plugin '29decibel/codeschool-vim-theme'
 Plugin 'altercation/solarized', {'rtp': 'vim-colors-solarized'}
+Plugin 'ciaranm/inkpot'
+Plugin 'morhetz/gruvbox'
+Plugin 'jpo/vim-railscasts-theme'
+Plugin 'Lokaltog/vim-distinguished'
+Plugin 'nanotech/jellybeans.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
