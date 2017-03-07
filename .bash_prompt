@@ -1,0 +1,12 @@
+
+PS1='${debian_chroot:+($debian_chroot)}'
+PS1="$PS1"'\[\033[01;32m\]'    # change to green
+PS1="$PS1"'\u@\h'              # user@host
+PS1="$PS1"'\[\033[00m\]'       # change to purple
+PS1="$PS1"':'                  # show :
+PS1="$PS1"'\[\033[01;34m\]'    # change to blue
+PS1="$PS1"'\w'                 # current working directory
+PS1="$PS1"'\[\033[91m\]'       # change color to light red
+PS1="$PS1"'`__git_ps1`'        # bash function
+PS1="$PS1"'\[\033[0m\]'        # change color
+PS1="$PS1"'$ '                 # prompt: always $
