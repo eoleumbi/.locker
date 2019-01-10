@@ -7,7 +7,7 @@ else
   lan mes en
 endif
 
-source ~/.locker/.vundle    "TODO replace .locker to current directory
+source ~/.locker/.vim-plug    "TODO replace .locker to current directory
 if has('gui_running')
     source ~/.locker/.gvimrc
 endif

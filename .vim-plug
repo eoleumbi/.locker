@@ -1,0 +1,59 @@
+" vim-plug manager
+"
+" https://github.com/junegunn/vim-plug/wiki/tips
+
+call plug#begin('~/.vim/plugged')
+
+" original repos on github
+Plug 'tpope/vim-fugitive'
+Plug 'gregsexton/gitv'
+
+Plug 'bling/vim-airline'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'dkprice/vim-easygrep'
+
+Plug 'mhinz/vim-startify'
+
+" developement
+"=============================================================================
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTree' }
+Plug 'szw/vim-tags'
+Plug 'majutsushi/tagbar'
+Plug 'vim-scripts/taglist.vim'
+Plug 'brookhong/cscope.vim'
+Plug 'vim-scripts/cscope_macros.vim'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/matchit.zip'
+Plug 'scrooloose/syntastic'
+Plug 'kien/ctrlp.vim'
+
+"Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
+Plug 'python-mode/python-mode', { 'branch': 'develop', 'for':'python' }
+
+" debugging vim script
+"Plug 'c9s/vim-dev-plugin'
+"Plug 'BreakPts'
+"Plug 'clones/vim-genutils'
+
+" utils
+"=============================================================================
+Plug 'mattn/calendar-vim', { 'on': 'Calendar' }
+Plug 'junegunn/vim-plug'
+
+" colorscheme
+"=============================================================================
+Plug 'djjcast/mirodark'
+Plug 'tomasr/molokai'
+Plug '29decibel/codeschool-vim-theme'
+Plug 'micha/vim-colors-solarized'
+Plug 'ciaranm/inkpot'
+Plug 'morhetz/gruvbox'
+Plug 'jpo/vim-railscasts-theme'
+Plug 'Lokaltog/vim-distinguished'
+Plug 'nanotech/jellybeans.vim'
+
+call plug#end()
+
+" see 
+
+" vim: et sts=2 ts=2 sw=2 tw=78 norl:ft=vim:
