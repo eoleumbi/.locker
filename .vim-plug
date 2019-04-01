@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 " original repos on github
 Plug 'tpope/vim-fugitive'
 Plug 'gregsexton/gitv'
+Plug 'junegunn/gv.vim'
 
 Plug 'bling/vim-airline'
 Plug 'Lokaltog/vim-easymotion'
@@ -26,6 +27,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/syntastic'
 Plug 'kien/ctrlp.vim'
+Plug 'airblade/vim-rooter'
 
 "Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 Plug 'python-mode/python-mode', { 'branch': 'develop', 'for':'python' }
