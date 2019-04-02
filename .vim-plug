@@ -41,6 +41,7 @@ Plug 'python-mode/python-mode', { 'branch': 'develop', 'for':'python' }
 "=============================================================================
 Plug 'mattn/calendar-vim', { 'on': 'Calendar' }
 Plug 'junegunn/vim-plug'
+Plug 'junegunn/goyo.vim'
 
 " colorscheme
 "=============================================================================

@@ -1,4 +1,10 @@
 
+# use macvim in macOS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias vim='mvim -v'
+fi
+export EDITOR=vim
+
 # enable color support of ls and also add handy aliases
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias ls='ls -G'
