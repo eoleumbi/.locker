@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
 
 " original repos on github
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'gregsexton/gitv'
 Plug 'junegunn/gv.vim'
 
@@ -24,16 +25,23 @@ Plug 'mhinz/vim-startify'
 " developement
 "=============================================================================
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTree' }
-Plug 'szw/vim-tags'
 Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/taglist.vim'
-Plug 'brookhong/cscope.vim'
-Plug 'vim-scripts/cscope_macros.vim'
+"Plug 'brookhong/cscope.vim'     " cscove, smart cscope helper (:CscopeList :CscopeClear)
+"Plug 'vim-scripts/cscope_macros.vim'
+
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/syntastic'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'       " full path fuzzy finder
 Plug 'airblade/vim-rooter'
+Plug 'eoleumbi/gtags-vim'       " :Gtags, :GtagsCscope
+
+" tag manager
+"Plug 'szw/vim-tags'
+"Plug 'ludovicchabant/vim-gutentags'
+"Plug 'skywind3000/gutentags_plus'
+"Plug 'jsfaint/gen_tags.vim'
 
 "Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 Plug 'python-mode/python-mode', { 'branch': 'develop', 'for':'python' }
@@ -48,6 +56,8 @@ Plug 'python-mode/python-mode', { 'branch': 'develop', 'for':'python' }
 Plug 'mattn/calendar-vim', { 'on': 'Calendar' }
 Plug 'junegunn/vim-plug'
 Plug 'junegunn/goyo.vim'
+
+"Plug 'mjbrownie/browser.vim'
 
 " colorscheme
 "=============================================================================

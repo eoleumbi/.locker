@@ -87,29 +87,46 @@ set diffopt+=vertical
   endif
 " }
 
-" cscove {
-    nnoremap  <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
-    nnoremap  <leader>l :call ToggleLocationList()<CR>
+" cscope {
+    if has('cscope')
+      set cscopetag
 
-    " s: Find this C symbol
-    nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
-    " g: Find this definition
-    nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
-    " d: Find functions called by this function
-    nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
-    " c: Find functions calling this function
-    nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
-    " t: Find this text string
-    nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
-    " e: Find this egrep pattern
-    nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
-    " f: Find this file
-    nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
-    " i: Find files #including this file
-    nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
-
-    set csto=1 "check ctags for definition of symbols before checking cscope
+      if has('quickfix')
+        set cscopequickfix=s-,c-,d-,i-,t-,e-
+      endif
+    endif
 " }
+
+" gtags-vim {
+    let GtagsCscope_Auto_Map = 1
+ "  let GtagsCscope_Auto_Load = 1
+" }
+
+" cscove {
+ "  nnoremap  <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
+ "  nnoremap  <leader>l :call ToggleLocationList()<CR>
+
+ "  " s: Find this C symbol
+ "  nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
+ "  " g: Find this definition
+ "  nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
+ "  " d: Find functions called by this function
+ "  nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
+ "  " c: Find functions calling this function
+ "  nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
+ "  " t: Find this text string
+ "  nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
+ "  " e: Find this egrep pattern
+ "  nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
+ "  " f: Find this file
+ "  nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
+ "  " i: Find files #including this file
+ "  nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+
+ "  let g:cscope_auto_update = 0
+ "  set csto=1 "check ctags for definition of symbols before checking cscope
+" }
+
 
 " CtrlP {
   if exists("g:ctrl_user_command")
@@ -121,11 +138,24 @@ set diffopt+=vertical
     \ }
 " }
 
+" vim-gutentags {
+ "  let g:gutentags_modules = ['gtags_cscope']
+ "  let g:gutentags_define_advanced_commands = 1
+ "  let g:gutentags_trace = 1
+ "  let g:gutentags_auto_add_gtags_cscope = 1
+ "  let g:gutentags_debug = 1
+" }
+
+" gutentags-plus {
+
+" }
+
+
 " javacomplete {
-  if !empty(globpath(&rtp, 'autoload/javacomplete.vim'))
-    autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-        \ completefunc=javacomplete#CompleteParamsInfo
-  endif
+ "  if !empty(globpath(&rtp, 'autoload/javacomplete.vim'))
+ "    autocmd Filetype java setlocal omnifunc=javacomplete#Complete
+ "        \ completefunc=javacomplete#CompleteParamsInfo
+ "  endif
 " }
 
 " vim: et sts=2 ts=2 sw=2 tw=78 norl:
