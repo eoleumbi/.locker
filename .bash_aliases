@@ -1,4 +1,6 @@
 
+export FACEOFF_DEBUG=$FACEOFF_DEBUG:.bash_aliases
+
 # use macvim in macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
     alias vim='mvim -v'
