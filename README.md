@@ -15,6 +15,7 @@
    $ echo source ~/.locker/.vimrc > ~/.vimrc
    $ cd ~
    $ ln -s ~/.locker/.bash_aliases
+   $ ln -s ~/.locker/.zshrc
    $ ln -s ~/.locker/.gitconfig
    $ ln -s ~/.locker/.screenrc
    ```
