@@ -130,3 +130,11 @@ fpath=($HOME/.zsh/conda-zsh-completion $fpath)
 zstyle ":conda_zsh_completion:*" use-groups true
 compinit
 # <<< conda zsh completion <<<
+
+######################################################################
+# asdf
+######################################################################
+if command -v brew 1>/dev/null 2>&1; then
+    . $(brew --prefix asdf)/asdf.sh
+    . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+fi
