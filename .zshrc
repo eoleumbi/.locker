@@ -3,7 +3,7 @@
 
 ######################################################################
 # .zshrc
-export FACEOFF_DEBUG=$FACEOFF_DEBUG:.zshrc
+export FACEOFF_DEBUG=$FACEOFF_DEBUG:.zshrc($(date))
 
 if [ -f "$HOME/.locker/.myrc" ]; then
     . "$HOME/.locker/.myrc"
@@ -77,7 +77,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew pyenv python tmux)
+plugins=(git brew python tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,6 +108,14 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 ######################################################################
+# asdf
+######################################################################
+if command -v brew 1>/dev/null 2>&1; then
+    . $(brew --prefix asdf)/asdf.sh
+    . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+fi
+
+######################################################################
 # anaconda
 ######################################################################
 # >>> conda initialize >>>
@@ -130,11 +138,3 @@ fpath=($HOME/.zsh/conda-zsh-completion $fpath)
 zstyle ":conda_zsh_completion:*" use-groups true
 compinit
 # <<< conda zsh completion <<<
-
-######################################################################
-# asdf
-######################################################################
-if command -v brew 1>/dev/null 2>&1; then
-    . $(brew --prefix asdf)/asdf.sh
-    . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
-fi

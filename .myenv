@@ -31,20 +31,6 @@ case "$OSTYPE" in
 esac
 
 ######################################################################
-# pyenv 
-# https://github.com/pyenv/pyenv 
-if command -v pyenv 1>/dev/null 2>&1; then 
-	eval "$(pyenv init -)" 
-fi 
- 
-# jenv 
-# https://github.com/jenv/jenv  
-if command -v jenv 1>/dev/null 2>&1; then 
-	#export PATH="$HOME/.jenv/bin:$PATH" 
-	eval "$(jenv init -)" 
-fi
-
-######################################################################
 export EDITOR=vim
 
 # vim:ts=4:sw=4:ft=zsh
