@@ -1,0 +1,305 @@
+#+STARTUP: contents indent hidestars
+#+PROPERTY: header-args :comments yes :results silent
+
+* References
+http://wikemacs.org/wiki/User%27s_Initialization_File
+https://cestlaz.github.io/posts/using-emacs-10-org-init/
+https://github.com/jwiegley/use-package
+
+* Repos
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+#+END_SRC
+
+* Basic Customization
+#+BEGIN_SRC emacs-lisp
+;; input method
+(setq default-input-method "korean-hangul")
+#+END_SRC
+
+** interface tweaks
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-startup-message t) ;; hide the startup message
+(global-linum-mode t) ;; enable line numbers globally
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq echo-keystrokes 0.001) ;; echo keystrokes immediately
+(tool-bar-mode -1)  ;; no toolbar
+(setq-default indent-tabs-mode nil)
+(global-hl-line-mode t)
+#+END_SRC
+** visible-bell : flashing the mode-line
+https://www.emacswiki.org/emacs/AlarmBell
+#+BEGIN_SRC emacs-lisp
+(setq visible-bell nil
+      ring-bell-function 'flash-mode-line)
+(defun flash-mode-line ()
+  (invert-face 'mode-line)
+  (run-with-timer 0.1 nil #'invert-face 'mode-line))
+#+END_SRC
+** browser
+#+BEGIN_SRC emacs-lisp
+(setq browse-url-browser-function 'eww-browse-url)
+#+END_SRC
+* Theme
+#+BEGIN_SRC emacs-lisp
+(use-package spacemacs-theme
+  :ensure t
+  :no-require t ;; suppress error. see https://github.com/jwiegley/use-package/issues/545
+  :init
+  (setq spacemacs-theme-org-agenda-height nil)
+  (setq spacemacs-theme-org-height nil)
+  :config
+  (load-theme 'spacemacs-dark t)
+  )
+#+END_SRC
+
+* Org
+#+BEGIN_SRC emacs-lisp
+(use-package org
+  :ensure t
+  :pin org
+  :mode (("\\.org$" . org-mode))
+  :init
+  (setq org-src-preserve-indentation t)
+  :bind (("C-c c l" . org-store-link)
+	 ("C-c c a" . org-agenda)
+	 ("C-c c c" . org-capture))
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (shell . t)
+     (python . t)
+     (js . t)
+     (ruby . t)
+     (sql . t)))
+  )
+#+END_SRC
+
+* Ivy, Swiper
+https://github.com/abo-abo/swiper
+
+#+BEGIN_SRC emacs-lisp
+(use-package ivy
+  :ensure t
+  :diminish (ivy-mode)
+  :bind (("C-x b" . ivy-switch-buffer))
+  :config
+  (ivy-mode 1)
+  )
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+(use-package swiper
+  :ensure t
+  :config
+  (progn
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (global-set-key "\C-s" 'swiper))
+)
+#+END_SRC
+
+* Windows
+** Basics
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'default-frame-alist '(height . 300))
+(add-to-list 'default-frame-alist '(width . 250))
+(add-to-list 'default-frame-alist '(font . "Fira Mono for Powerline-14"))
+(setq face-font-rescale-alist '(("NanumGothicCoding" . 1.18)))
+;; 1.25 for 160 / 1.18 for 140
+;; frame init
+(defun my-frame-init ()
+  ;; default Latin font (e.g. Consolas)
+  ;;(set-face-attribute 'default nil :family "Fira Mono for Powerline")
+  ;; default font size (point * 10)
+  ;; WARNING!  Depending on the default font,
+  ;; if the size is not supported very well, the frame will be clipped
+  ;; so that the beginning of the buffer may not be visible correctly.
+  ;; (set-face-attribute 'default nil :height 160)
+  ;;(set-face-attribute 'default nil :height 140)
+
+  ;; use specific font for Korean charset.
+  ;; if you want to use different font size for specific charset,
+  ;; add :size POINT-SIZE in the font-spec.
+  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+
+  ;; theme
+  ;;(load-theme 'dracula t)
+  ;;(load-theme 'bubbleberry t)
+
+  )
+
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+        (lambda (frame)
+            (with-selected-frame frame
+	      (my-frame-init))))
+  (my-frame-init))
+
+#+END_SRC
+** Vertical Split
+https://emacs.stackexchange.com/questions/39034/prefer-vertical-splits-over-horizontal-ones
+Fix annoying vertical window splitting.
+https://lists.gnu.org/archive/html/help-gnu-emacs/2015-08/msg00339.html
+#+BEGIN_SRC emacs-lisp
+(with-eval-after-load "window"
+  (defcustom split-window-below nil
+    "If non-nil, vertical splits produce new windows below."
+    :group 'windows
+    :type 'boolean)
+
+  (defcustom split-window-right nil
+    "If non-nil, horizontal splits produce new windows to the right."
+    :group 'windows
+    :type 'boolean)
+
+  (fmakunbound #'split-window-sensibly)
+
+  (defun split-window-sensibly
+      (&optional window)
+    (setq window (or window (selected-window)))
+    (or (and (window-splittable-p window t)
+             ;; Split window horizontally.
+             (split-window window nil (if split-window-right 'left  'right)))
+        (and (window-splittable-p window)
+             ;; Split window vertically.
+             (split-window window nil (if split-window-below 'above 'below)))
+        (and (eq window (frame-root-window (window-frame window)))
+             (not (window-minibuffer-p window))
+             ;; If WINDOW is the only window on its frame and is not the
+             ;; minibuffer window, try to split it horizontally disregarding the
+             ;; value of `split-width-threshold'.
+             (let ((split-width-threshold 0))
+               (when (window-splittable-p window t)
+                 (split-window window nil (if split-window-right
+                                              'left
+                                            'right))))))))
+
+(setq-default split-height-threshold  4
+              split-width-threshold   160) ; the reasonable limit for horizontal splits
+
+#+END_SRC
+** Golden Ratio
+https://github.com/roman/golden-ratio.el
+#+BEGIN_SRC emacs-lisp
+(use-package golden-ratio
+  :ensure t
+  :config
+  (golden-ratio-mode 1)
+  (setq golden-ratio-adjust-factor .8
+	golden-ratio-wide-adjust-factor .8)
+  ;; ediff
+  (setq golden-ratio-exclude-modes '("eshell-mode" "dired-mode" "calendar-mode" "ediff-mode"))
+  ;; https://github.com/roman/golden-ratio.el/wiki
+  (add-to-list 'golden-ratio-inhibit-functions 'pl/ediff-comparison-buffer-p)
+  (defun pl/ediff-comparison-buffer-p ()
+    (and (boundp 'ediff-this-buffer-ediff-sessions)
+     ediff-this-buffer-ediff-sessions))
+  ;; The version which also called balance-windows at this point looked
+  ;; a bit broken, but could probably be replaced with:
+  ;;
+  ;; (defun pl/ediff-comparison-buffer-p ()
+  ;;   (and (boundp 'ediff-this-buffer-ediff-sessions)
+  ;;        ediff-this-buffer-ediff-sessions
+  ;;        (prog1 t (balance-windows))))
+  ;;
+  ;; However I think the following has the desired effect, and without
+  ;; messing with the ediff control buffer:
+  ;;
+  (add-hook 'ediff-startup-hook 'my-ediff-startup-hook)
+  (defun my-ediff-startup-hook ()
+    "Workaround to balance the ediff windows when golden-ratio is enabled."
+    ;; There's probably a better way to do it.
+    (ediff-toggle-split)
+    (ediff-toggle-split))
+  )
+#+END_SRC
+
+** Auto Dim
+#+BEGIN_SRC emacs-lisp
+;; auto-dim-other-buffers
+;; https://github.com/mina86/auto-dim-other-buffers.el
+(use-package auto-dim-other-buffers
+  :ensure t
+  :config
+  (add-hook 'after-init-hook (lambda ()
+			       (when (fboundp 'auto-dim-other-buffers-mode)
+				 (auto-dim-other-buffers-mode t))))
+  )
+#+END_SRC
+
+** ace-window : selecting a window to switch to
+https://github.com/abo-abo/ace-window
+#+BEGIN_SRC emacs-lisp
+(use-package ace-window
+  :ensure t
+  :bind ("M-o" . ace-window)
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+)
+#+END_SRC
+* Developement
+
+** Magit
+https://magit.vc
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :ensure t
+  :bind ("C-x g" . magit-status)
+  )
+#+END_SRC
+
+** Projectile
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+  :ensure t
+  :bind ("C-c p" . projectile-command-map)
+  :config
+  (projectile-global-mode)
+  (setq projectile-completion-system 'ivy)
+  (setq projectile-enable-caching t)
+  (setq projectile-indexing-method 'alien)
+  ;;(setq projectile-indexing-method 'native)
+  (setq projectile-globally-ignored-directories
+        (append '(".DS_Store" ".git" ".svn" "out" "repl" "target" "dist" "lib" "node_modules" "libs" "deploy")
+                projectile-globally-ignored-directories))
+  (setq projectile-globally-ignored-file-suffixes
+        (append '(".#*" ".DS_Store" "*.tar.gz" "*.tgz" "*.zip" "*.png" "*.jpg" "*.gif")
+                projectile-globally-ignored-file-suffixes))
+  (setq grep-find-ignored-directories (append '("dist" "deploy" "node_modules") grep-find-ignored-directories))
+  )
+#+END_SRC
+
+** Diff
+*** Diff in Org Mode
+#+BEGIN_SRC emacs-lisp
+(add-hook 'ediff-prepare-buffer-hook 'f-ediff-prepare-buffer-hook-setup)
+(defun f-ediff-prepare-buffer-hook-setup ()
+  ;; specific modes
+  (cond ((eq major-mode 'org-mode)
+         (f-org-vis-mod-maximum))
+        ;; room for more modes
+        )
+  ;; all modes
+  (setq truncate-lines nil))
+(defun f-org-vis-mod-maximum ()
+  "Visibility: Show the most possible."
+  (cond
+   ((eq major-mode 'org-mode)
+    (visible-mode 1)  ; default 0
+    (setq truncate-lines nil)  ; no `org-startup-truncated' in hook
+    (setq org-hide-leading-stars t))  ; default nil
+   (t
+    (message "ERR: not in Org mode")
+    (ding))))
+#+END_SRC
+
+** DevOps
+*** Docker
+#+BEGIN_SRC emacs-lisp
+;; Docker
+(use-package dockerfile-mode
+  :ensure t
+  :mode "Dockerfile\\'"
+  )
+#+END_SRC
