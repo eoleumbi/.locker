@@ -61,9 +61,10 @@ https://www.emacswiki.org/emacs/AlarmBell
   :mode (("\\.org$" . org-mode))
   :init
   (setq org-src-preserve-indentation t)
-  :bind (("C-c c l" . org-store-link)
-	 ("C-c c a" . org-agenda)
-	 ("C-c c c" . org-capture))
+  :bind (("C-c l" . org-store-link)
+         ("C-c a" . org-agenda)
+         ("C-c c" . org-capture)
+         ("C-c b" . org-switchb))
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -73,6 +74,7 @@ https://www.emacswiki.org/emacs/AlarmBell
      (js . t)
      (ruby . t)
      (sql . t)))
+  (setq org-agenda-files '("~/Notes"))
   )
 #+END_SRC
 

@@ -1,4 +1,4 @@
-
+# -*- mode: gitignore; -*-
 .DS_Store
 Desktop.ini
 
@@ -12,3 +12,8 @@ Thumbs.db
 
 # Vim swap file (e.g. .swp, .swo, .swn, etc)
 *.sw?
+
+# Emacs files
+*~
+\#*\#
+.\#*
