@@ -76,6 +76,19 @@ https://www.emacswiki.org/emacs/AlarmBell
      (sql . t)))
   (setq org-agenda-files '("~/Notes"))
   )
+
+(use-package org-duration
+  :config
+  (setq org-duration-units
+        `(("min" . 1)
+          ("h" . 60)
+          ("d" . ,(* 60 8)) ;; eight-hour days
+          ("w" . ,(* 60 8 5)) ;; five-day work week
+          ("m" . ,(* 60 8 5 4)) ;; four weeks in a month
+          ("y" . ,(* 60 8 5 4 12)) ;; work a total of 12 months a year
+          ))
+  (org-duration-set-regexps)
+  )
 #+END_SRC
 
 * Ivy, Swiper
