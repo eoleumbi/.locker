@@ -14,6 +14,9 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
+;; Don't ask to follow symblinks on init
+(setq vc-follow-symlinks t)
+
 ;; init.el.org
 ;; --------------------------------------
 (require 'org)
@@ -23,3 +26,6 @@
 ;; https://emacs.stackexchange.com/questions/21394/how-can-i-change-where-the-customize-puts-custom-set-variables
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
+
+;; revert to default after init
+(setq vc-follow-symlinks (quote ask))

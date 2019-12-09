@@ -2,10 +2,11 @@
 #+PROPERTY: header-args :comments yes :results silent
 
 * References
-http://wikemacs.org/wiki/User%27s_Initialization_File
-https://cestlaz.github.io/posts/using-emacs-10-org-init/
-https://github.com/jwiegley/use-package
-
+- http://wikemacs.org/wiki/User%27s_Initialization_File
+- https://cestlaz.github.io/posts/using-emacs-10-org-init/
+- https://github.com/jwiegley/use-package
+- https://gitlab.com/semente/dotfiles/blob/master/emacs/.emacs
+- https://protesilaos.com/dotemacs/
 * Repos
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
@@ -39,6 +40,26 @@ https://www.emacswiki.org/emacs/AlarmBell
 ** browser
 #+BEGIN_SRC emacs-lisp
 (setq browse-url-browser-function 'eww-browse-url)
+#+END_SRC
+* Movement
+** ace-jump-mode : similar to Vim's EasyMotion
+https://github.com/winterTTr/ace-jump-mode
+~C-c C-SPC~ to avoid key map conflict with org
+https://emacs.stackexchange.com/questions/17376/acejump-key-bindings-not-working-in-org-mode
+#+BEGIN_SRC emacs-lisp
+(use-package ace-jump-mode
+  :ensure t
+  :bind ("C-c C-SPC" . ace-jump-mode)
+  )
+#+END_SRC
+** avy : similar to ace-jump-mode or Vim's EasyMotion
+https://github.com/abo-abo/avy
+#+BEGIN_SRC emacs-lisp
+(use-package avy
+  :ensure t
+  :disabled
+  :bind ("M-s" . avy-goto-word-1)
+  )
 #+END_SRC
 * Theme
 #+BEGIN_SRC emacs-lisp
@@ -78,6 +99,7 @@ https://www.emacswiki.org/emacs/AlarmBell
   )
 
 (use-package org-duration
+  :after org
   :config
   (setq org-duration-units
         `(("min" . 1)
@@ -88,6 +110,14 @@ https://www.emacswiki.org/emacs/AlarmBell
           ("y" . ,(* 60 8 5 4 12)) ;; work a total of 12 months a year
           ))
   (org-duration-set-regexps)
+  )
+
+(use-package org-id
+  :after org
+  :init
+  (setq org-id-link-to-org-use-id t)
+  :config
+  (org-id-update-id-locations)
   )
 #+END_SRC
 
@@ -106,11 +136,15 @@ https://github.com/abo-abo/swiper
 #+BEGIN_SRC emacs-lisp
 (use-package swiper
   :ensure t
+  ;; :after ivy
+  :bind (("M-s M-s" . swiper)
+         ("M-s s" . swiper-thing-at-point)
+         )
   :config
   (progn
     (ivy-mode 1)
     (setq ivy-use-virtual-buffers t)
-    (global-set-key "\C-s" 'swiper))
+    )
 )
 #+END_SRC
 
@@ -285,6 +319,19 @@ https://magit.vc
   )
 #+END_SRC
 
+** ggtags frontend to GNU Global
+https://github.com/leoliu/ggtags
+#+BEGIN_SRC emacs-lisp
+(use-package ggtags
+  :ensure t
+  :hook (csharp-mode . ggtags-mode)
+  :config
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+                (ggtags-mode 1))))
+  )
+#+END_SRC
 ** Diff
 *** Diff in Org Mode
 #+BEGIN_SRC emacs-lisp
@@ -316,5 +363,22 @@ https://magit.vc
 (use-package dockerfile-mode
   :ensure t
   :mode "Dockerfile\\'"
+  )
+#+END_SRC
+** Language specific
+*** C#
+https://github.com/josteink/csharp-mode
+see https://github.com/dholm/dotemacs/blob/master/.emacs.d/lisp/modes/csharp.el
+#+BEGIN_SRC emacs-lisp
+(use-package csharp-mode
+  :ensure t
+  :defer
+  )
+#+END_SRC
+https://github.com/OmniSharp/omnisharp-emacs
+#+BEGIN_SRC emacs-lisp
+(use-package omnisharp
+  :ensure t
+  :hook (csharp-mode . omnisharp-mode)
   )
 #+END_SRC
