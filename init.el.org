@@ -73,7 +73,26 @@ https://github.com/abo-abo/avy
   (load-theme 'spacemacs-dark t)
   )
 #+END_SRC
-
+** emoji
+https://github.com/iqbalansari/emacs-emojify
+https://github.com/alexmurray/dot_emacs.d/blob/master/init.el
+#+BEGIN_SRC emacs-lisp
+(use-package emojify
+  :ensure t
+  :diminish emojify-mode
+  :bind (("C-c e" . emojify-insert-emoji))
+  :defer nil
+  :config
+  ;; display emojis using images since looks nicer
+  (setq emojify-display-style 'image)
+  ;; only replace unicode style emojis (don't mess with ascii and github style)
+  (setq emojify-emoji-styles '(unicode))
+  ;; echo the actual underlying character to the minibuffer when point is
+  ;; over them so we don't mess with the displayed buffer itself
+  (setq emojify-point-entered-behaviour 'echo)
+  (global-emojify-mode 1)
+  )
+#+END_SRC
 * Org
 #+BEGIN_SRC emacs-lisp
 (use-package org
@@ -151,11 +170,14 @@ https://github.com/abo-abo/swiper
 * Windows
 ** Basics
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'default-frame-alist '(height . 300))
+(add-to-list 'default-frame-alist '(fullscreen . fullheight))
 (add-to-list 'default-frame-alist '(width . 250))
-(add-to-list 'default-frame-alist '(font . "Fira Mono for Powerline-14"))
-(setq face-font-rescale-alist '(("NanumGothicCoding" . 1.18)))
-;; 1.25 for 160 / 1.18 for 140
+(add-to-list 'default-frame-alist
+             '(font . "-*-Fira Mono for Powerline-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1"))
+(setq face-font-rescale-alist '(("NanumGothicCoding" . 1.20)))
+;; rescale factor for font height
+;; 1.18 for 14, 1.25 for 16 on LG Ultrafine 5k
+;; 1.25 for 12, 1.20 for 11, 1.25 for 10 on Lenovo X250
 ;; frame init
 (defun my-frame-init ()
   ;; default Latin font (e.g. Consolas)
