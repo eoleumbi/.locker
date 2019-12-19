@@ -16,6 +16,8 @@
 #+BEGIN_SRC emacs-lisp
 ;; input method
 (setq default-input-method "korean-hangul")
+;; 한영키
+(global-set-key (kbd "<Hangul>") 'toggle-input-method)
 #+END_SRC
 
 ** interface tweaks
