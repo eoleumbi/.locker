@@ -43,6 +43,11 @@ https://www.emacswiki.org/emacs/AlarmBell
 #+BEGIN_SRC emacs-lisp
 (setq browse-url-browser-function 'eww-browse-url)
 #+END_SRC
+** server-mode
+#+BEGIN_SRC emacs-lisp
+(use-package server
+  :hook (after-init . server-start))
+#+END_SRC
 * Movement
 ** ace-jump-mode : similar to Vim's EasyMotion
 https://github.com/winterTTr/ace-jump-mode
@@ -172,8 +177,8 @@ https://github.com/abo-abo/swiper
 * Windows
 ** Basics
 #+BEGIN_SRC emacs-lisp
+(add-to-list 'initial-frame-alist '(fullscreen . fullboth))
 (add-to-list 'default-frame-alist '(fullscreen . fullheight))
-(add-to-list 'default-frame-alist '(width . 250))
 (add-to-list 'default-frame-alist
              '(font . "-*-Fira Mono for Powerline-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1"))
 (setq face-font-rescale-alist '(("NanumGothicCoding" . 1.20)))
