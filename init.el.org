@@ -361,6 +361,16 @@ https://github.com/leoliu/ggtags
                 (ggtags-mode 1))))
   )
 #+END_SRC
+** Compile
+https://www.emacswiki.org/emacs/SmartCompile
+config example :: https://github.com/rejuvyesh/emacs.d/blob/master/init/setup-major-modes.el
+#+BEGIN_SRC emacs-lisp
+(use-package smart-compile
+  :ensure t
+  :config
+  (add-to-list 'smart-compile-alist '("\\.cs\\'" . "dotnet build"))
+  )
+#+END_SRC
 ** Diff
 *** Diff in Org Mode
 #+BEGIN_SRC emacs-lisp
