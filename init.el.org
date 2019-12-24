@@ -100,6 +100,21 @@ https://github.com/alexmurray/dot_emacs.d/blob/master/init.el
   (global-emojify-mode 1)
   )
 #+END_SRC
+** unicode fonts
+https://github.com/rolandwalker/unicode-fonts
+https://www.emacswiki.org/emacs/UnicodeFonts
+https://two-wrongs.com/variable-width-unicode-fallbacks-in-emacs
+#+BEGIN_SRC emacs-lisp
+(use-package unicode-fonts
+  :ensure t
+  :disabled ;;disabled for now
+  :config
+  (setq unicode-fonts-block-font-mapping
+        '(("Emoticons" ("Apple Color Emoji" "Symbola" "Quivira")))
+      unicode-fonts-fontset-names '("fontset-default"))
+  (unicode-fonts-setup)
+  )
+#+END_SRC
 * Org
 #+BEGIN_SRC emacs-lisp
 (use-package org
@@ -177,7 +192,7 @@ https://github.com/abo-abo/swiper
 * Windows
 ** Basics
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'initial-frame-alist '(fullscreen . fullboth))
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(fullscreen . fullheight))
 (add-to-list 'default-frame-alist
              '(font . "-*-Fira Mono for Powerline-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1"))
@@ -313,7 +328,7 @@ https://github.com/abo-abo/ace-window
   :ensure t
   :bind ("M-o" . ace-window)
   :config
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  ;; (setq aw-keys '(?f ?d ?s ?k ?l ?1 ?2 ?3 ?4 ?5 ?6 ?7 ?8 ?9)) ; 한글모드에선 창선택이 안되 불편
 )
 #+END_SRC
 * Developement
