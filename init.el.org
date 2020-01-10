@@ -433,6 +433,9 @@ https://github.com/OmniSharp/omnisharp-emacs
 #+BEGIN_SRC emacs-lisp
 (use-package omnisharp
   :ensure t
+  :after company
   :hook (csharp-mode . omnisharp-mode)
+  :config
+  (add-to-list 'company-backends 'company-omnisharp)
   )
 #+END_SRC
