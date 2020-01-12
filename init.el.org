@@ -48,6 +48,23 @@ https://www.emacswiki.org/emacs/AlarmBell
 (use-package server
   :hook (after-init . server-start))
 #+END_SRC
+** vim
+*** open file in gvim
+#+BEGIN_SRC emacs-lisp
+(defun my-gvim-current-file ()
+  (interactive)
+  (async-shell-command
+   (format "gvim +%d %s"
+       (+ (if (bolp) 1 0) (count-lines 1 (point)))
+       (shell-quote-argument buffer-file-name))))
+#+END_SRC
+** modeline
+https://github.com/myrjola/diminish.el
+#+BEGIN_SRC emacs-lisp
+(use-package diminish
+  :ensure t
+  )
+#+END_SRC
 * Movement
 ** ace-jump-mode : similar to Vim's EasyMotion
 https://github.com/winterTTr/ace-jump-mode
@@ -168,7 +185,7 @@ https://github.com/abo-abo/swiper
 #+BEGIN_SRC emacs-lisp
 (use-package ivy
   :ensure t
-  :diminish (ivy-mode)
+  :diminish
   :bind (("C-x b" . ivy-switch-buffer))
   :config
   (ivy-mode 1)
@@ -277,6 +294,7 @@ https://github.com/roman/golden-ratio.el
 #+BEGIN_SRC emacs-lisp
 (use-package golden-ratio
   :ensure t
+  :diminish
   :config
   (golden-ratio-mode 1)
   (setq golden-ratio-adjust-factor .8
@@ -314,6 +332,7 @@ https://github.com/roman/golden-ratio.el
 ;; https://github.com/mina86/auto-dim-other-buffers.el
 (use-package auto-dim-other-buffers
   :ensure t
+  :diminish
   :config
   (add-hook 'after-init-hook (lambda ()
 			       (when (fboundp 'auto-dim-other-buffers-mode)
@@ -341,7 +360,16 @@ https://magit.vc
   :bind ("C-x g" . magit-status)
   )
 #+END_SRC
-
+** Company
+#+BEGIN_SRC emacs-lisp
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 3)
+  (global-company-mode t)
+)
+#+END_SRC
 ** Projectile
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
