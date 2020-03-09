@@ -350,8 +350,27 @@ https://github.com/abo-abo/ace-window
   ;; (setq aw-keys '(?f ?d ?s ?k ?l ?1 ?2 ?3 ?4 ?5 ?6 ?7 ?8 ?9)) ; 한글모드에선 창선택이 안되 불편
 )
 #+END_SRC
-* Developement
+* Tools
+** Dictionary
+#+BEGIN_SRC emacs-lisp
+(use-package define-word
+  :ensure t
+  :bind ("C-c d" . define-word-at-point)
+  :bind ("C-c D" . define-word)
+  )
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+(autoload 'ispell-get-word "ispell")
 
+(defun lookup-daum-dic (word)
+  (interactive (list (save-excursion (car (ispell-get-word nil)))))
+  (browse-url (format "https://dic.daum.net/search.do?q=%s" word)))
+
+(defun lookup-naver-dic (word)
+  (interactive (list (save-excursion (car (ispell-get-word nil)))))
+  (browse-url (format "https://m.dict.naver.com/search?range=all&query=%s" word)))
+#+END_SRC
+* Developement
 ** Magit
 https://magit.vc
 #+BEGIN_SRC emacs-lisp
