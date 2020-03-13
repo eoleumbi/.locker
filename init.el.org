@@ -153,7 +153,29 @@ https://two-wrongs.com/variable-width-unicode-fallbacks-in-emacs
      (js . t)
      (ruby . t)
      (sql . t)))
-  (setq org-agenda-files '("~/Notes"))
+
+  ;; Org Agenda files
+  ;; See http://doc.norang.ca/org-mode.html
+  ;; or https://raw.githubusercontent.com/webbj74/org-mode-doc/master/org-mode.org
+  (setq org-agenda-files (quote ("~/Notes"
+                                 "~/Books/__Cards__"
+                                 "~/.locker"
+                                 )))
+  ;; (setq org-agenda-text-search-extra-files
+  ;;       (append (directory-files-recursively "~/Books/__Cards__" "\.org$")
+  ;;               ))
+
+  (add-hook 'org-mode-hook
+          '(lambda ()
+             ;; Undefine C-c [ and C-c ] since this breaks my
+             ;; org-agenda files when directories are include It
+             ;; expands the files in the directories individually
+             (org-defkey org-mode-map "\C-c[" 'undefined)
+             (org-defkey org-mode-map "\C-c]" 'undefined)
+             ;;(org-defkey org-mode-map "\C-c;" 'undefined)
+             ;;(org-defkey org-mode-map "\C-c\C-x\C-q" 'undefined)
+             )
+          'append)
   )
 
 (use-package org-duration
@@ -456,7 +478,14 @@ config example :: https://github.com/rejuvyesh/emacs.d/blob/master/init/setup-ma
     (message "ERR: not in Org mode")
     (ding))))
 #+END_SRC
-
+** Debugger
+*** RealGUD
+https://github.com/realgud/realgud
+#+BEGIN_SRC emacs-lisp
+(use-package realgud
+  :ensure t
+  )
+#+END_SRC
 ** DevOps
 *** Docker
 #+BEGIN_SRC emacs-lisp
@@ -484,6 +513,26 @@ https://github.com/OmniSharp/omnisharp-emacs
   :hook (csharp-mode . omnisharp-mode)
   :config
   (add-to-list 'company-backends 'company-omnisharp)
+  )
+#+END_SRC
+*** Python
+#+BEGIN_SRC emacs-lisp
+(use-package python-docstring
+  :ensure t
+  :hook (python-mode . python-docstring-mode)
+  )
+#+END_SRC
+https://github.com/naiquevin/sphinx-doc.el C-c M-d for sphinx-doc
+#+BEGIN_SRC emacs-lisp
+(use-package sphinx-doc
+  :ensure t
+  :hook (python-mode . sphinx-doc-mode)
+  )
+#+END_SRC
+*** HTML
+#+BEGIN_SRC emacs-lisp
+(use-package web-mode
+  :ensure t
   )
 #+END_SRC
 * i18n
