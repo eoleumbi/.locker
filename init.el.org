@@ -529,6 +529,25 @@ https://github.com/naiquevin/sphinx-doc.el C-c M-d for sphinx-doc
   :hook (python-mode . sphinx-doc-mode)
   )
 #+END_SRC
+*** JavaScript
+#+BEGIN_SRC emacs-lisp
+;; https://raw.githubusercontent.com/zamansky/using-emacs/master/myinit.org
+(use-package js2-mode
+  :ensure t
+  :ensure ac-js2
+  :init
+  (progn
+    (add-hook 'js-mode-hook 'js2-minor-mode)
+    (add-hook 'js2-mode-hook 'ac-js2-mode))
+  )
+;; https://gitlab.com/semente/dotfiles/blob/master/emacs/.emacs
+(use-package prettier-js
+  :ensure t
+  :config
+  ;; (add-hook 'css-mode-hook 'prettier-js-mode)
+  ;; (add-hook 'js-mode-hook 'prettier-js-mode)
+  )
+#+END_SRC
 *** Web
 #+BEGIN_SRC emacs-lisp
 ;; https://raw.githubusercontent.com/zamansky/using-emacs/master/myinit.org
