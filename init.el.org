@@ -529,10 +529,27 @@ https://github.com/naiquevin/sphinx-doc.el C-c M-d for sphinx-doc
   :hook (python-mode . sphinx-doc-mode)
   )
 #+END_SRC
-*** HTML
+*** Web
 #+BEGIN_SRC emacs-lisp
+;; https://raw.githubusercontent.com/zamansky/using-emacs/master/myinit.org
 (use-package web-mode
   :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (setq web-mode-ac-sources-alist
+        '(("css" . (ac-source-css-property))
+          ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+  (setq web-mode-enable-auto-closing t)
+  )
+
+;; https://gitlab.com/semente/dotfiles/blob/master/emacs/.emacs
+(use-package rainbow-mode
+  :ensure t
+  :defer
+  :init
+  (add-hook 'prog-mode-hook  'rainbow-mode)
+  :config
+  (setq rainbow-r-colors-major-mode-list '(ess-mode emacs-lisp-mode))
   )
 #+END_SRC
 * i18n
